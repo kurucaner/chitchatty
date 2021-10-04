@@ -13,8 +13,9 @@ import { GlobalStyle } from "./GlobalStyle";
 import "./App.css";
 
 //Components
-import ChnannelContainer from "../src/components/ChannelContainer";
+import ChannelContainer from "../src/components/ChannelContainer";
 import ChannelListContainer from "../src/components/ChannelListContainer";
+import ChannelSearch  from "../src/components/ChannelSearch";
 
 //Sms notification
 const apiKey = "j4877hzgyhwy";
@@ -24,9 +25,8 @@ function App() {
   return (
     <div className="app__wrapper">
       <Chat client={client}>
-        <Header />
         <ChannelListContainer />
-        <ChnannelContainer />
+        <ChannelContainer />
       </Chat>
     </div>
   );

@@ -1,23 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Chatting
 import { ChannelList, useChatContext } from "stream-chat-react";
 import Cookies from "universal-cookie";
 
 //Styles
-import { Wrapper, Image, Content, Content2 } from "./ChannelListContainer.styles";
-import chaticon from "../ChannelListContainer/chaticon.png";
-import logout from "../ChannelListContainer/logout.png";
+import {
+  Wrapper,
+  Content,
+  Content2,
+  Icon,
+  ChatLogo,
+  LogoutLogo,
+  ChannelHeader,
+  ChannelHeaderText,
+} from "./ChannelListContainer.styles";
+import chaticon from "../../Assests/chaticon.png";
+import logout from "../../Assests/logout.png";
 
-const ChannelListContainer = () => (
+//Components
+import ChannelSearch from "../ChannelSearch";
+
+const SideBar = () => (
   <Wrapper>
     <Content>
-      <Image src={chaticon} alt="chaticon" width="30" />
+      <Icon>
+        <ChatLogo src={chaticon} alt="chaticon" />
+      </Icon>
     </Content>
     <Content2>
-      <Image src={logout} alt="logout" width="30" />
+      <Icon>
+        <LogoutLogo src={logout} alt="logout" />
+      </Icon>
     </Content2>
   </Wrapper>
 );
+
+const CompanyHeader = () => (
+  <div className="channel-list__header">
+    <p className="channel-list__header__text">@CHITCHATTY</p>
+  </div>
+);
+
+const ChannelListContainer = () => {
+  return (
+    <>
+      <SideBar />
+      <div className="channel-list__list__wrapper">
+        <CompanyHeader />
+        <ChannelSearch />
+      </div>
+    </>
+  );
+};
 
 export default ChannelListContainer;

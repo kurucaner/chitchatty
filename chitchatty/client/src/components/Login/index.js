@@ -40,7 +40,7 @@ const Login = () => {
 
     const { username, password, phoneNumber, avatarURL } = form;
 
-    const URL = "https://localhost:3000/auth";
+    const URL = "https://localhost:3000/login";
 
     const {
       data: { token, userId, hashedPassword, fullName },

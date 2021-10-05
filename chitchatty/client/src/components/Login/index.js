@@ -14,12 +14,11 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const cookies = new Cookies();
 
 const initialState = {
-  fullName: "",
+  firstname: "",
+  lastname: "",
+  email: "",
   username: "",
-  password: "",
-  confirmPassword: "",
-  phoneNumber: "",
-  avatarURL: "",
+  password: ""
 };
 
 const Login = () => {
@@ -37,33 +36,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { username, password, phoneNumber, avatarURL } = form;
-
-    const URL = "https://localhost:3000/login";
-
-    const {
-      data: { token, userId, hashedPassword, fullName },
-    } = await axios.post(`${URL}/${isSignedUp ? "signup" : "login"}`, {
-      username,
-      password,
-      fullName: form.fullName,
-      phoneNumber,
-      avatarURL,
-    });
-
-    cookies.set("token", token);
-    cookies.set("username", username);
-    cookies.set("fullName", fullName);
-    cookies.set("userId", userId);
-
-    if (isSignedUp) {
-      cookies.set("phoneNumber", phoneNumber);
-      cookies.set("avatarURL", avatarURL);
-      cookies.set("hashedPassword", hashedPassword);
-    }
-
-    window.location.reload();
+    console.log(form)
   };
 
   const switchMode = () => {

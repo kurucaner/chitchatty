@@ -61,14 +61,11 @@ body {
 /** Search Bar Ends **/
 /** SideBar Ends **/
 
-
-
-
 /** Media Screen Starts **/
 
 @media screen and (max-width: 960px) {
   .channel-list__list__wrapper {
-    width: 100%;
+    width: 360px;
   }
 
   .channel-search__input__text {
@@ -77,3 +74,98 @@ body {
 }
 
 /** Media Screen Ends **/
+
+/** Channel Name Starts Here **/
+
+.channel-preview__wrapper {
+  height: 37px;
+  display: flex;
+  align-items: center;
+}
+
+.channel-preview__wrapper__selected {
+  height: auto;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+  margin-right: 16px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.channel-preview__wrapper:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-weight: bold;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+/** Channel Name Ends Here **/
+
+/* Form Starts Here */
+
+.auth__form-container_fields-content_button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.auth__form-container_fields-content_button button {
+  border-radius: 4px;
+  background: #005fff;
+  border: 1px solid #005fff;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  padding: 0.7rem 1.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.auth__form-container_fields-content_button button:hover {
+  background: #0066ff;
+}
+
+.auth__form-container_fields-account {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-top: 0.2rem;
+}
+
+.auth__form-container_fields-account p {
+  font-size: 14px;
+  color: rgb(165, 141, 141);
+  font-weight: 500;
+}
+
+.auth__form-container_fields-account em {
+  color: #1d58be;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Form Ends Here */
+
+/* Toggle Password Starts Here*/
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+i {
+  text-align: right;
+}
+i:hover {
+  color: #00fcb6;
+  cursor: pointer;
+}
+/* Toggle Password Ends Here */

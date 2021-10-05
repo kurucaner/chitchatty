@@ -21,6 +21,7 @@ import logout from "../../Assests/logout.png";
 //Components
 import ChannelSearch from "../ChannelSearch";
 import TeamChannelList from "../TeamChannelList";
+import TeamChannelPreview from "../TeamChannelPreview";
 
 const SideBar = () => (
   <Wrapper>
@@ -54,6 +55,9 @@ const ChannelListContainer = () => {
           filters={{}}
           channelRenderFilterFn={() => {}}
           List={(listProps) => <TeamChannelList {...listProps} type="team" />}
+          Preview={(previewProps) => (
+            <TeamChannelPreview {...previewProps} type="team" />
+          )}
         />
       </div>
     </>

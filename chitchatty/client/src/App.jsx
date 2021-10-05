@@ -13,15 +13,21 @@ import { GlobalStyle } from "./GlobalStyle";
 import "./App.css";
 
 //Components
-import ChannelContainer from "../src/components/ChannelContainer";
-import ChannelListContainer from "../src/components/ChannelListContainer";
-import ChannelSearch  from "../src/components/ChannelSearch";
+import ChannelContainer from "./components/ChannelContainer";
+import ChannelListContainer from "./components/ChannelListContainer";
+import ChannelSearch  from "./components/ChannelSearch";
+import Login from "./components/Login"
 
 //Sms notification
 const apiKey = "j4877hzgyhwy";
 const client = StreamChat.getInstance(apiKey);
 
+//Login page
+const loginToken = false;
+
 function App() {
+
+  if(!loginToken) return <Login />
   return (
     <div className="app__wrapper">
       <Chat client={client}>

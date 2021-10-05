@@ -5,11 +5,7 @@ import { useChatContext } from "stream-chat-react";
 import { SearchIcon } from "../../Assests/SearchIcon";
 
 //Styles
-import {
-  Wrapper,
-  Content,
-  Icon,
-} from "./ChannelSearch.styles";
+import { Wrapper, Content, Icon } from "./ChannelSearch.styles";
 
 const ChannelSearch = () => {
   const [query, setQuery] = useState("");
@@ -21,14 +17,22 @@ const ChannelSearch = () => {
       setQuery("");
     }
   };
+  const getUsers = async (text) => {
+    try {
+      //fetching users
+    } catch (error) {
+      setQuery("");
+    }
+  };
 
   const onSearch = (event) => {
     event.preventDefault();
     setLoading(true);
     setQuery(event.target.value);
     getChannels(event.target.value);
+    getUsers(event.target.value);
   };
-  
+
   return (
     <Wrapper>
       <Content>

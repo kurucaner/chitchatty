@@ -20,6 +20,7 @@ import logout from "../../Assests/logout.png";
 
 //Components
 import ChannelSearch from "../ChannelSearch";
+import TeamChannelList from "../TeamChannelList";
 
 const SideBar = () => (
   <Wrapper>
@@ -49,6 +50,11 @@ const ChannelListContainer = () => {
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => <TeamChannelList {...listProps} type="team" />}
+        />
       </div>
     </>
   );

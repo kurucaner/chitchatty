@@ -40,7 +40,7 @@ const ChannelSearch = () => {
           placeholder="Search"
           type="text"
           value={query}
-          onchange={onSearch}
+          onChange={onSearch}
         />
       </Content>
     </Wrapper>

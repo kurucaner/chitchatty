@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     #353945;
   box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.25);
+
+  @media screen and (max-width: 320px) {
+    display: none;
+  }
 `;
 
 export const Content = styled.div`

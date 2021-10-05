@@ -9,15 +9,26 @@ import {
   Wrapper,
   Content,
   Icon,
-} from "../ChannelListContainer/ChannelListContainer.styles";
+} from "./ChannelSearch.styles";
 
 const ChannelSearch = () => {
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const getChannels = async (text) => {
+    try {
+      //fetching channels
+    } catch (error) {
+      setQuery("");
+    }
+  };
 
   const onSearch = (event) => {
     event.preventDefault();
+    setLoading(true);
     setQuery(event.target.value);
+    getChannels(event.target.value);
   };
+  
   return (
     <Wrapper>
       <Content>

@@ -17,8 +17,10 @@ export const Content = styled.div`
   background: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   margin-bottom: 8px;
-  border: 1px solid transparent;
   width: 95%;
+  :focus & {
+    border: 1px solid #fff;
+  }
 `;
 
 export const Icon = styled.div`

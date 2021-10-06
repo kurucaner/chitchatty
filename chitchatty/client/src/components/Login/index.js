@@ -16,9 +16,9 @@ const cookies = new Cookies();
 const initialState = {
   firstname: "",
   lastname: "",
-  email: "",
   username: "",
-  password: ""
+  email: "",
+  password: "",
 };
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form)
+    console.log(form);
   };
 
   const switchMode = () => {
@@ -53,7 +53,7 @@ const Login = () => {
               <Input>
                 <label htmlFor="firstName">FIRST NAME:</label>
                 <input
-                  name="firstName"
+                  name="firstname"
                   type="text"
                   onChange={handleChange}
                   required
@@ -61,14 +61,14 @@ const Login = () => {
 
                 <label htmlFor="lastName">LAST NAME:</label>
                 <input
-                  name="lastName"
+                  name="lastname"
                   type="text"
                   onChange={handleChange}
                   required
                 />
                 <label htmlFor="userName">USERNAME:</label>
                 <input
-                  name="userName"
+                  name="username"
                   type="text"
                   onChange={handleChange}
                   required

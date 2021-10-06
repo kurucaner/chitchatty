@@ -36,7 +36,7 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitSignUp = async (e) => {
     e.preventDefault();
     console.log("form submitted");
 
@@ -69,6 +69,11 @@ const Login = () => {
     createUser(form);
   };
 
+  const handleSubmitSignIn = async (e) => {
+    e.preventDefault();
+    console.log("Signed in");
+  }
+
   const switchMode = () => {
     setIsSignedUp((prevIsSigedUp) => !prevIsSigedUp);
   };
@@ -78,78 +83,80 @@ const Login = () => {
         <Form>
           <h2>Welcome!</h2>
           <em>We are happy to see you!</em>
-          <form onSubmit={handleSubmit}>
             {isSignedUp ? (
-              <Input>
-                <label htmlFor="firstName">FIRST NAME:</label>
-                <input
-                  name="firstName"
-                  type="text"
-                  value={form.firstName}
-                  onChange={handleChange}
-                  required
-                />
+              <form onSubmit={handleSubmitSignUp}>
+                <Input>
+                  <label htmlFor="firstName">FIRST NAME:</label>
+                  <input
+                    name="firstName"
+                    type="text"
+                    value={form.firstName}
+                    onChange={handleChange}
+                    required
+                  />
 
-                <label htmlFor="lastName">LAST NAME:</label>
-                <input
-                  name="lastName"
-                  type="text"
-                  value={form.lastName}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="userName">USERNAME:</label>
-                <input
-                  name="username"
-                  type="text"
-                  value={form.username}
-                  onChange={handleChange}
-                  required
-                />
-                <label for="email">EMAIL:</label>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="password">PASSWORD:</label>
-                <input
-                  name="password"
-                  type={passwordShown ? "text" : "password"}
-                  value={form.password}
-                  onChange={handleChange}
-                  required
-                />
-                <i onClick={togglePasswordVisiblity}>{eye}</i>
-                <div className="auth__form-container_fields-content_button">
-                  <button>Sign Up</button>
-                </div>
-              </Input>
+                  <label htmlFor="lastName">LAST NAME:</label>
+                  <input
+                    name="lastName"
+                    type="text"
+                    value={form.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="userName">USERNAME:</label>
+                  <input
+                    name="username"
+                    type="text"
+                    value={form.username}
+                    onChange={handleChange}
+                    required
+                  />
+                  <label for="email">EMAIL:</label>
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="password">PASSWORD:</label>
+                  <input
+                    name="password"
+                    type={passwordShown ? "text" : "password"}
+                    value={form.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  <i onClick={togglePasswordVisiblity}>{eye}</i>
+                  <div className="auth__form-container_fields-content_button">
+                    <button>Sign Up</button>
+                  </div>
+                </Input>
+              </form>
             ) : (
-              <Input>
-                <label for="email">EMAIL:</label>
-                <input
-                  name="email"
-                  type="email"
-                  onChange={handleChange}
-                  required
-                />
-                <label htmlFor="password">PASSWORD:</label>
-                <input
-                  name="password"
-                  type={passwordShown ? "text" : "password"}
-                  onChange={handleChange}
-                  required
-                />
-                <i onClick={togglePasswordVisiblity}>{eye}</i>
-                <div className="auth__form-container_fields-content_button">
-                  <button>Sign In</button>
-                </div>
-              </Input>
+              <form onSubmit={handleSubmitSignIn}>
+                <Input>
+                  <label for="email">EMAIL:</label>
+                  <input
+                    name="email"
+                    type="email"
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="password">PASSWORD:</label>
+                  <input
+                    name="password"
+                    type={passwordShown ? "text" : "password"}
+                    onChange={handleChange}
+                    required
+                  />
+                  <i onClick={togglePasswordVisiblity}>{eye}</i>
+                  <div className="auth__form-container_fields-content_button">
+                    <button>Sign In</button>
+                  </div>
+                </Input>
+              </form>
             )}
-          </form>
           <div className="auth__form-container_fields-account">
             <p>
               {isSignedUp

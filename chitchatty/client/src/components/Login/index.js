@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useDebugValue, useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
 //Style
 import { Wrapper, Content, Form, Input } from "./Login.styles";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 //Form
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  username: "",
-  email: "",
-  password: "",
-};
 
 const Login = () => {
+  const initialState = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: ""
+  };
+
   const [isSignedUp, setIsSignedUp] = useState(true);
   const [form, setForm] = useState(initialState);
   const [passwordShown, setPasswordShown] = useState(false);
+  
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -36,7 +38,31 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    console.log("form submitted");
+
+    const createUser = (formData) => {
+      const { firstName, lastName, username, email, password } = formData;
+
+      const user = {
+        firstName,
+        lastName,
+        username,
+        email,
+        password
+      };
+
+      const configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      };
+      fetch("http://localhost:9292/users", configObj)
+        .then(response => response.json())
+        .then(data => console.log(data));
+    };
+    createUser(form);
   };
 
   const switchMode = () => {
@@ -53,16 +79,18 @@ const Login = () => {
               <Input>
                 <label htmlFor="firstName">FIRST NAME:</label>
                 <input
-                  name="firstname"
+                  name="firstName"
                   type="text"
+                  value={form.firstName}
                   onChange={handleChange}
                   required
                 />
 
                 <label htmlFor="lastName">LAST NAME:</label>
                 <input
-                  name="lastname"
+                  name="lastName"
                   type="text"
+                  value={form.lastName}
                   onChange={handleChange}
                   required
                 />
@@ -70,6 +98,7 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
+                  value={form.username}
                   onChange={handleChange}
                   required
                 />
@@ -77,6 +106,7 @@ const Login = () => {
                 <input
                   name="email"
                   type="email"
+                  value={form.email}
                   onChange={handleChange}
                   required
                 />
@@ -84,6 +114,7 @@ const Login = () => {
                 <input
                   name="password"
                   type={passwordShown ? "text" : "password"}
+                  value={form.password}
                   onChange={handleChange}
                   required
                 />

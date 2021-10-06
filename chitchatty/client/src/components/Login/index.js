@@ -60,8 +60,12 @@ const Login = () => {
       };
       fetch("http://localhost:9292/users", configObj)
         .then(response => response.json())
-        .then(data => console.log(data));
-    };
+        .then(data => {
+          console.log("User posted")
+          console.log(data)
+          setForm(initialState)   
+        });
+      };
     createUser(form);
   };
 

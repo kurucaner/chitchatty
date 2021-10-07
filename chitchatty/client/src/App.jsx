@@ -42,7 +42,6 @@ function App() {
         <Header />
         <div className="app__wrapper">
               <Chat client={client} >
-                <ChannelSearch />
                 <ChannelListContainer />
                 <ChannelContainer />
               </Chat>

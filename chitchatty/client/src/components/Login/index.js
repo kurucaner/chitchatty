@@ -14,19 +14,20 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 
 // const cookies = new Cookies();
 
-
-const Login = ({isLoggedIn, setIsLoggedIn}) => {
+const Login = ({ isLoggedIn, setIsLoggedIn }) => {
   const initialState = {
     firstName: "",
     lastName: "",
     username: "",
     email: "",
-    password: ""
+    password: "",
   };
 
   const [isSignedUp, setIsSignedUp] = useState(true);
   const [form, setForm] = useState(initialState);
   const [passwordShown, setPasswordShown] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -48,7 +49,7 @@ const Login = ({isLoggedIn, setIsLoggedIn}) => {
         lastName,
         username,
         email,
-        password
+        password,
       };
 
       const configObj = {
@@ -59,15 +60,15 @@ const Login = ({isLoggedIn, setIsLoggedIn}) => {
         body: JSON.stringify(user),
       };
       fetch("http://localhost:9292/users", configObj)
-        .then(response => response.json())
-        .then(data => {
-          localStorage.setItem("user", data.id)
-          console.log("User posted")
-          console.log(data)
-          setForm(initialState)   
-          setIsLoggedIn(!isLoggedIn)
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("user", data.id);
+          console.log("User posted");
+          console.log(data);
+          setForm(initialState);
+          setIsLoggedIn(!isLoggedIn);
         });
-      };
+    };
     createUser(form);
     // setIsSignedUp(!isSignedUp);
   };
@@ -81,7 +82,7 @@ const Login = ({isLoggedIn, setIsLoggedIn}) => {
 
       const user = {
         email,
-        password
+        password,
       };
 
       const configObj = {
@@ -92,16 +93,18 @@ const Login = ({isLoggedIn, setIsLoggedIn}) => {
         body: JSON.stringify(user),
       };
       fetch("http://localhost:9292/login", configObj)
-        .then(response => response.json())
-        .then(data => {
-          localStorage.setItem("user", data.id)
-          console.log("User posted")
-          console.log(data)
-          setForm(initialState)   
-          setIsLoggedIn(!isLoggedIn)
-        });
-      };
-    login(form)
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("user", data.id);
+          console.log("User posted");
+          console.log(data);
+          setForm(initialState);
+          setIsLoggedIn(!isLoggedIn);
+        }).catch(err => {
+          console.log("ENTERED WRONG DATA!")
+        })
+    };
+    login(form);
   };
 
   const switchMode = () => {
@@ -114,80 +117,80 @@ const Login = ({isLoggedIn, setIsLoggedIn}) => {
         <Form>
           <h2>Welcome!</h2>
           <em>We are happy to see you!</em>
-            {isSignedUp ? (
-              <form onSubmit={handleSubmitSignUp}>
-                <Input>
-                  <label htmlFor="firstName">FIRST NAME:</label>
-                  <input
-                    name="firstName"
-                    type="text"
-                    value={form.firstName}
-                    onChange={handleChange}
-                    required
-                  />
+          {isSignedUp ? (
+            <form onSubmit={handleSubmitSignUp}>
+              <Input>
+                <label htmlFor="firstName">FIRST NAME:</label>
+                <input
+                  name="firstName"
+                  type="text"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  required
+                />
 
-                  <label htmlFor="lastName">LAST NAME:</label>
-                  <input
-                    name="lastName"
-                    type="text"
-                    value={form.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="userName">USERNAME:</label>
-                  <input
-                    name="username"
-                    type="text"
-                    value={form.username}
-                    onChange={handleChange}
-                    required
-                  />
-                  <label for="email">EMAIL:</label>
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="password">PASSWORD:</label>
-                  <input
-                    name="password"
-                    type={passwordShown ? "text" : "password"}
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                  />
-                  <i onClick={togglePasswordVisiblity}>{eye}</i>
-                  <div className="auth__form-container_fields-content_button">
-                    <button>Sign Up</button>
-                  </div>
-                </Input>
-              </form>
-            ) : (
-              <form onSubmit={handleSubmitSignIn}>
-                <Input>
-                  <label for="email">EMAIL:</label>
-                  <input
-                    name="email"
-                    type="email"
-                    onChange={handleChange}
-                    required
-                  />
-                  <label htmlFor="password">PASSWORD:</label>
-                  <input
-                    name="password"
-                    type={passwordShown ? "text" : "password"}
-                    onChange={handleChange}
-                    required
-                  />
-                  <i onClick={togglePasswordVisiblity}>{eye}</i>
-                  <div className="auth__form-container_fields-content_button">
-                    <button>Sign In</button>
-                  </div>
-                </Input>
-              </form>
-            )}
+                <label htmlFor="lastName">LAST NAME:</label>
+                <input
+                  name="lastName"
+                  type="text"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="userName">USERNAME:</label>
+                <input
+                  name="username"
+                  type="text"
+                  value={form.username}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="email">EMAIL:</label>
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="password">PASSWORD:</label>
+                <input
+                  name="password"
+                  type={passwordShown ? "text" : "password"}
+                  value={form.password}
+                  onChange={handleChange}
+                  required
+                />
+                <i onClick={togglePasswordVisiblity}>{eye}</i>
+                <div className="auth__form-container_fields-content_button">
+                  <button>Sign Up</button>
+                </div>
+              </Input>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmitSignIn}>
+              <Input>
+                <label htmlFor="email">EMAIL:</label>
+                <input
+                  name="email"
+                  type="email"
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="password">PASSWORD:</label>
+                <input
+                  name="password"
+                  type={passwordShown ? "text" : "password"}
+                  onChange={handleChange}
+                  required
+                />
+                <i onClick={togglePasswordVisiblity}>{eye}</i>
+                <div className="auth__form-container_fields-content_button">
+                  <button>Sign In</button>
+                </div>
+              </Input>
+            </form>
+          )}
           <div className="auth__form-container_fields-account">
             <p>
               {isSignedUp

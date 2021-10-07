@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 
 //Routing
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Chatting
 import { StreamChat } from "stream-chat";
@@ -17,25 +17,39 @@ import ChannelContainer from "./components/ChannelContainer";
 import ChannelListContainer from "./components/ChannelListContainer";
 import ChannelSearch  from "./components/ChannelSearch";
 import Login from "./components/Login"
+import Header from "./components/HeaderContainer";
+import { useState } from "react";
 
 //Sms notification
 const apiKey = "j4877hzgyhwy";
 const client = StreamChat.getInstance(apiKey);
 
-//Login page
-const loginToken = false;
+// Login page
+
 
 function App() {
-
-  if(!loginToken) return <Login />
-  return (
-    <div className="app__wrapper">
-      <Chat client={client}>
-        <ChannelListContainer />
-        <ChannelContainer />
-      </Chat>
-    </div>
-  );
-}
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  if (isLoggedIn == false){
+    return (
+    <>
+    <Header />
+    <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+    </>)
+  } 
+  else {
+    return (
+      <>
+        <Header />
+        <div className="app__wrapper">
+              <Chat client={client} >
+                <ChannelSearch />
+                <ChannelListContainer />
+                <ChannelContainer />
+              </Chat>
+        </div>
+      </>
+    );
+  }
+};
 
 export default App;

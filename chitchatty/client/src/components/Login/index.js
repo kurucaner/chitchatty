@@ -1,4 +1,5 @@
 import React, { useDebugValue, useState } from "react";
+import { Redirect } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
@@ -14,7 +15,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 // const cookies = new Cookies();
 
 
-const Login = () => {
+const Login = ({isLoggedIn, setIsLoggedIn}) => {
   const initialState = {
     firstName: "",
     lastName: "",
@@ -26,7 +27,6 @@ const Login = () => {
   const [isSignedUp, setIsSignedUp] = useState(true);
   const [form, setForm] = useState(initialState);
   const [passwordShown, setPasswordShown] = useState(false);
-  
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -61,22 +61,53 @@ const Login = () => {
       fetch("http://localhost:9292/users", configObj)
         .then(response => response.json())
         .then(data => {
+          localStorage.setItem("user", data.id)
           console.log("User posted")
           console.log(data)
           setForm(initialState)   
+          setIsLoggedIn(!isLoggedIn)
         });
       };
     createUser(form);
+    // setIsSignedUp(!isSignedUp);
   };
 
   const handleSubmitSignIn = async (e) => {
     e.preventDefault();
-    console.log("Signed in");
-  }
+    console.log("sign in submitted");
+
+    const login = (formData) => {
+      const { email, password } = formData;
+
+      const user = {
+        email,
+        password
+      };
+
+      const configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      };
+      fetch("http://localhost:9292/login", configObj)
+        .then(response => response.json())
+        .then(data => {
+          localStorage.setItem("user", data.id)
+          console.log("User posted")
+          console.log(data)
+          setForm(initialState)   
+          setIsLoggedIn(!isLoggedIn)
+        });
+      };
+    login(form)
+  };
 
   const switchMode = () => {
-    setIsSignedUp((prevIsSigedUp) => !prevIsSigedUp);
+    setIsSignedUp((prevIsSignedUp) => !prevIsSignedUp);
   };
+
   return (
     <Wrapper>
       <Content>
@@ -160,8 +191,8 @@ const Login = () => {
           <div className="auth__form-container_fields-account">
             <p>
               {isSignedUp
-                ? "Already have an account?"
-                : "Don't have an account?"}
+                ? "Already have an account? "
+                : "Don't have an account? "}
               <em onClick={switchMode}>{isSignedUp ? "Sign In" : "Sign Up"}</em>
             </p>
           </div>

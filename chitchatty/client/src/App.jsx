@@ -13,7 +13,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import "./App.css";
 
 //Components
-import ChannelContainer from "./components/ChannelContainer";
+import MessageContainer from "./components/MessageContainer";
 import ChannelListContainer from "./components/ChannelListContainer";
 import ChannelSearch  from "./components/ChannelSearch";
 import Login from "./components/Login"
@@ -43,7 +43,7 @@ function App() {
         <div className="app__wrapper">
               <Chat client={client} >
                 <ChannelListContainer />
-                <ChannelContainer />
+                <MessageContainer />
               </Chat>
         </div>
       </>

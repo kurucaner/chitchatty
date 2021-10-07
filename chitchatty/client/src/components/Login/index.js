@@ -101,7 +101,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
           setForm(initialState);
           setIsLoggedIn(!isLoggedIn);
         }).catch(err => {
-          console.log("ENTERED WRONG DATA!")
+          alert("Invalid login information!")
         })
     };
     login(form);

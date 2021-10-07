@@ -22,6 +22,7 @@ import logoutIcon from "../../Assests/logout.png";
 import ChannelSearch from "../ChannelSearch";
 import TeamChannelList from "../TeamChannelList";
 import TeamChannelPreview from "../TeamChannelPreview";
+import UserList from "../UserListContainer";
 
 const SideBar = ({ logout }) => (
   <Wrapper>
@@ -54,14 +55,15 @@ const ChannelListContainer = () => {
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
-        <ChannelList
+        <UserList />
+        {/* <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
           List={(listProps) => <TeamChannelList {...listProps} type="team" />}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type="team" />
           )}
-        />
+        /> */}
       </div>
     </>
   );

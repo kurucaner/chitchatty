@@ -16,14 +16,14 @@ import {
   ChannelHeaderText,
 } from "./ChannelListContainer.styles";
 import chaticon from "../../Assests/chaticon.png";
-import logout from "../../Assests/logout.png";
+import logoutIcon from "../../Assests/logout.png";
 
 //Components
 import ChannelSearch from "../ChannelSearch";
 import TeamChannelList from "../TeamChannelList";
 import TeamChannelPreview from "../TeamChannelPreview";
 
-const SideBar = () => (
+const SideBar = ({ logout }) => (
   <Wrapper>
     <Content>
       <Icon>
@@ -32,7 +32,7 @@ const SideBar = () => (
     </Content>
     <Content2>
       <Icon>
-        <LogoutLogo src={logout} alt="logout" />
+        <LogoutLogo src={logoutIcon} alt="logout" onClick={logout} />
       </Icon>
     </Content2>
   </Wrapper>
@@ -45,16 +45,19 @@ const CompanyHeader = () => (
 );
 
 const ChannelListContainer = () => {
+  const logout = () => {
+    window.location.reload();
+  };
   return (
     <>
-      <SideBar />
+      <SideBar logout={logout}/>
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
         <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
-          List={(listProps) => (<TeamChannelList {...listProps} type="team" />)}
+          List={(listProps) => <TeamChannelList {...listProps} type="team" />}
           Preview={(previewProps) => (
             <TeamChannelPreview {...previewProps} type="team" />
           )}

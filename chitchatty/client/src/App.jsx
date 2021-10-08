@@ -17,7 +17,7 @@ const apiKey = "j4877hzgyhwy";
 const client = StreamChat.getInstance(apiKey);
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("user"))
   if (isLoggedIn === false){
     return (
     <>

@@ -5,8 +5,10 @@ import { Content } from "../ChannelListContainer/ChannelListContainer.styles";
 import { Wrapper } from "./MessageContainer.styles";
 
 const MessageContainer = () => {
+  const user = parseInt(localStorage.getItem("user"))
   const initialState = {
     messages: "",
+    user_id: user
   };
   // const [messages, setFormMessages] = useState([])
   const [formMessages, setFormMessages] = useState(initialState);
@@ -20,10 +22,11 @@ const MessageContainer = () => {
     console.log("form submitted");
 
     const createMessage = (textData) => {
-      const { messages } = textData;
+      const { messages, user_id } = textData;
 
       const content = {
         messages,
+        user_id
       };
 
       const configObj = {

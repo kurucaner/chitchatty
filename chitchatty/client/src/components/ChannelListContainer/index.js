@@ -39,6 +39,7 @@ const CompanyHeader = () => (
 
 const ChannelListContainer = () => {
   const logout = () => {
+    localStorage.clear("user")
     window.location.reload();
   };
   return (

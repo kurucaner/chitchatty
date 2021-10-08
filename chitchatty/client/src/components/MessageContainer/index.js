@@ -1,21 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { MessageDeleted } from "stream-chat-react";
 import { Content } from "../ChannelListContainer/ChannelListContainer.styles";
 
 //Styles
 import { Wrapper } from "./MessageContainer.styles";
 
+//Component
+import MessageCard from "../MessageCardContainer";
+
 const MessageContainer = () => {
-  const user = parseInt(localStorage.getItem("user"))
+  const user = parseInt(localStorage.getItem("user"));
   const initialState = {
     messages: "",
-    user_id: user
+    user_id: user,
   };
-  // const [messages, setFormMessages] = useState([])
+  const [allMessages, setAllMessages] = useState([]);
   const [formMessages, setFormMessages] = useState(initialState);
 
   const handleChange = (e) => {
     setFormMessages({ ...formMessages, [e.target.name]: e.target.value });
   };
+  const getMessageList = async () => {
+    fetch("http://localhost:9292/messages")
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        setAllMessages(data);
+      });
+  };
+
+  useEffect(() => {
+    getMessageList();
+  }, []);
+
+  const messageArr = allMessages.map((message) => {
+    return <MessageCard key={message.id} messageContent={message} />;
+  });
 
   const handleSendMsg = async (e) => {
     e.preventDefault();
@@ -26,7 +46,7 @@ const MessageContainer = () => {
 
       const content = {
         messages,
-        user_id
+        user_id,
       };
 
       const configObj = {
@@ -42,42 +62,18 @@ const MessageContainer = () => {
           console.log("message sent");
           console.log(data);
           console.log("message posted");
+          setAllMessages([...allMessages, data])
           setFormMessages(initialState);
         });
     };
     createMessage(formMessages);
-    // setIsSignedUp(!isSignedUp);
   };
-
-  // const handleSendMsg = async (e) => {
-  //   e.preventDefault();
-
-  //   const createMessage = (text) => {
-  //     const message = {text}
-
-  //   const configObj = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(message),
-  //   };
-
-  //   fetch("http://localhost:9292/messages", configObj)
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       console.log("message sent")
-  //       console.log(data)
-  //       console.log("message posted")
-  //       setFormMessages("");
-  //     });
-  //     createMessage(messages);
-  //   }},
 
   return (
     <Wrapper>
       <div>Messages Container</div>
       <Content>
+        <div>{messageArr}</div>
         <form onSubmit={handleSendMsg}>
           <input
             name="messages"

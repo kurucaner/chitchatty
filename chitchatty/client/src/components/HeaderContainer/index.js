@@ -7,9 +7,9 @@ function Header() {
     return (
         <Wrapper>
             <Content>
-            <h1>ChitChatty | Insert Slogan Here</h1>
+            <h1>ChatIron | The choice chat app for Flatiron Students</h1>
         {/* Placeholder logo below */}
-            <Image src="https://i.imgur.com/4FH70EV.png" />
+            <Image src="https://i.imgur.com/HB10dN7.png" />
 
             </Content>
         </Wrapper>

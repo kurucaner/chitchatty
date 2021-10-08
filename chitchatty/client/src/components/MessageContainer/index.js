@@ -71,6 +71,7 @@ const MessageContainer = () => {
     <Wrapper>
       <Content>
         <form onSubmit={handleSendMsg}>
+  
           <input
             name="messages"
             type="text"

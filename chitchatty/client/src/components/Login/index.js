@@ -1,18 +1,12 @@
-import React, { useDebugValue, useState } from "react";
-import { Redirect } from "react-router-dom";
-import Cookies from "universal-cookie";
-import axios from "axios";
+import React, { useState } from "react";
 
 //Style
 import { Wrapper, Content, Form, Input } from "./Login.styles";
-// import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 //Form
-
-// const cookies = new Cookies();
 
 const Login = ({ isLoggedIn, setIsLoggedIn }) => {
   const initialState = {
@@ -26,8 +20,6 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
   const [isSignedUp, setIsSignedUp] = useState(true);
   const [form, setForm] = useState(initialState);
   const [passwordShown, setPasswordShown] = useState(false);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true)
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -100,9 +92,10 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
           console.log(data);
           setForm(initialState);
           setIsLoggedIn(!isLoggedIn);
-        }).catch(err => {
-          alert("Invalid login information!")
         })
+        .catch((err) => {
+          alert("Invalid login information!");
+        });
     };
     login(form);
   };
@@ -174,6 +167,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
                 <input
                   name="email"
                   type="email"
+                  value={form.email}
                   onChange={handleChange}
                   required
                 />
@@ -181,6 +175,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
                 <input
                   name="password"
                   type={passwordShown ? "text" : "password"}
+                  value={form.password}
                   onChange={handleChange}
                   required
                 />

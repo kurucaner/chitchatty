@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div``
 
-export const channelName = styled.p`
+export const ChannelName = styled.p`
   display: flex;
   align-items: center;
   font-family: Helvetica Neue, sans-serif;

@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-
-// Chatting
-import { ChannelList, useChatContext } from "stream-chat-react";
-import Cookies from "universal-cookie";
+import React from "react";
 
 //Styles
 import {
@@ -12,16 +8,12 @@ import {
   Icon,
   ChatLogo,
   LogoutLogo,
-  ChannelHeader,
-  ChannelHeaderText,
 } from "./ChannelListContainer.styles";
 import chaticon from "../../Assests/chaticon.png";
 import logoutIcon from "../../Assests/logout.png";
 
 //Components
 import ChannelSearch from "../ChannelSearch";
-import TeamChannelList from "../TeamChannelList";
-import TeamChannelPreview from "../TeamChannelPreview";
 import UserList from "../UserListContainer";
 
 const SideBar = ({ logout }) => (
@@ -51,7 +43,7 @@ const ChannelListContainer = () => {
   };
   return (
     <>
-      <SideBar logout={logout}/>
+      <SideBar logout={logout} />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />

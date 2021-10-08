@@ -3,7 +3,9 @@ import React from "react";
 //Styles 
 import {
     Wrapper,
-    Content
+    Content,
+    FullName,
+    Username
 } from "./UserCardContainer.styles"
 
 //Components
@@ -14,9 +16,8 @@ const UserCard = ({user}) => {
     return (
         <Wrapper>
             <Content>
-                <>
-                    <h4>{first_name} {last_name} ({user_name})</h4>
-                </>
+                <FullName>{first_name} {last_name} </FullName>
+                <Username>({user_name})</Username>
             </Content>
         </Wrapper>
     )

@@ -2,12 +2,12 @@ import React from "react";
 import { Avatar, useChatContext } from "stream-chat-react";
 
 //Styles
-import { Wrapper, channelName } from "./TeamChannelPreview.styles";
+import { ChannelName } from "./TeamChannelPreview.styles";
 
 const TeamChannelPreview = ({ channel, type }) => {
   const { channel: activeChannel, client } = useChatContext();
   const ChannelPreview = () => (
-    <channelName># {channel?.data?.name || channel?.data?.id}</channelName>
+    <ChannelName># {channel?.data?.name || channel?.data?.id}</ChannelName>
   );
 
   const DirectPreview = () => {

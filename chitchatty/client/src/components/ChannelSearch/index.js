@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useChatContext } from "stream-chat-react";
+import React, { useState } from "react";
 
 //Icon
 import { SearchIcon } from "../../Assests/SearchIcon";
@@ -15,6 +14,7 @@ const ChannelSearch = () => {
       //fetching channels
     } catch (error) {
       setQuery("");
+      loading(true);
     }
   };
   const getUsers = async (text) => {

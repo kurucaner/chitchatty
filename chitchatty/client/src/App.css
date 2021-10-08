@@ -14,19 +14,16 @@ body {
   height: 100%;
 }
 
-::placeholder {
-  color: rgba(255, 255, 255, 0.66);
-  white-space: nowrap;
-  width: 150px;
-}
+
 
 .app__wrapper {
   display: flex;
-  flex: 1;
   /* height: 800px; */
   height: 100%;
   /* border-radius: 16px; */
   box-shadow: rgba(0, 0, 0, 0.33) 0px 1px 4px 0px;
+  overflow: auto;
+  
 }
 /** SideBar Starts **/
 .channel-list__list__wrapper {
@@ -142,12 +139,12 @@ body {
 
 .auth__form-container_fields-account p {
   font-size: 14px;
-  color: rgb(165, 141, 141);
+  color: rgb(179, 62, 62);
   font-weight: 500;
 }
 
 .auth__form-container_fields-account em {
-  color: #1d58be;
+  color: #7084a7;
   cursor: pointer;
   font-weight: 700;
 }
@@ -169,3 +166,56 @@ i:hover {
   cursor: pointer;
 }
 /* Toggle Password Ends Here */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.message__button {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message__button:hover {
+  background-color: #45a049;
+}
+
+.chat-messages {
+  border-top: 1px solid rgba(0, 0, 0, .05);
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  flex: 1;
+}
+
+.message-box-holder {
+  width: 100%;
+  margin: 0 0 15px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+.message-box {
+  padding-left: 5px;
+  width: 100%;
+  border-radius: 6px 0 6px 0;
+  position: relative;
+  background: rgba(100, 170, 0, .1);
+  border: 2px solid rgba(100, 170, 0, .1);
+  color: #6c6c6c;
+  font-size: 12px;
+}

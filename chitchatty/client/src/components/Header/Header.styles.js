@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   padding: 0 20px;
   height: 75px;
-  background: #353945;
+  background: linear-gradient(to right, #e66465, #9198e5); ;
 `;
 
 export const Content = styled.div`
@@ -14,8 +14,6 @@ export const Content = styled.div`
   padding-left: 200px;
   margin: 0 auto;
   h1 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-style: italic;
     color: white;
   }
 `;

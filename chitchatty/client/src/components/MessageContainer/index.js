@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { MessageDeleted } from "stream-chat-react";
-import { Content } from "../ChannelListContainer/ChannelListContainer.styles";
 
 //Styles
-import { Wrapper } from "./MessageContainer.styles";
+import { Wrapper, Content, Message } from "./MessageContainer.styles";
 
 //Component
 import MessageCard from "../MessageCardContainer";
@@ -62,7 +60,7 @@ const MessageContainer = () => {
           console.log("message sent");
           console.log(data);
           console.log("message posted");
-          setAllMessages([...allMessages, data])
+          setAllMessages([...allMessages, data]);
           setFormMessages(initialState);
         });
     };
@@ -71,19 +69,23 @@ const MessageContainer = () => {
 
   return (
     <Wrapper>
-      <div>Messages Container</div>
       <Content>
-        <div>{messageArr}</div>
         <form onSubmit={handleSendMsg}>
           <input
             name="messages"
             type="text"
+            placeholder="Type your message..."
             value={formMessages.messages}
             onChange={handleChange}
           />
-          <button>Send</button>
+          <button className="message__button">Send</button>
         </form>
       </Content>
+      <div class="chat-messages">
+        <div class="message-box-holder">
+          <div class="message-box">{messageArr}</div>
+        </div>
+      </div>
     </Wrapper>
   );
 };
